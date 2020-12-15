@@ -44,9 +44,20 @@ object Exercises {
                        "S" -> "...", "T" -> "-", "U" -> "..-", "V" -> "...-", "W" -> ".--", "X" -> "-..-",
                        "Y" -> "-.--", "Z" -> "--..")
 
-  def morse(text: String): String = ???
+  def morse(text: String): String = {
+    text.toUpperCase
+        .map(s => MORSE.getOrElse(s.toString, s))
+        .mkString(" ")
+  }
 
 
-  def wordReverse(text: String): String = ???
+  def wordReverse(text: String): String = {
+    text.split("(?=[?!., ])|(?<=[?!., ])")
+        .map(w => if (w.charAt(0).isUpper)
+                    w.toLowerCase.reverse.capitalize
+                  else
+                    w.reverse)
+        .mkString("")
+  }
 
 }
